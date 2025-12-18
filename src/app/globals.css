@@ -1,0 +1,349 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DarkTube Global Styles */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 32;
+  }
+
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dt-charcoal;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dt-dark-gray rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-dt-orange;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.dt-dark-gray') theme('colors.dt-charcoal');
+  }
+}
+
+@layer components {
+  /* DarkTube Button Styles */
+  .btn-primary {
+    @apply bg-dt-orange hover:bg-dt-orange-muted text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-dt-orange focus:ring-opacity-50;
+  }
+
+  .btn-secondary {
+    @apply bg-dt-dark-gray hover:bg-dt-charcoal text-dt-white border border-dt-charcoal hover:border-dt-orange font-medium px-4 py-2 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-dt-orange focus:ring-opacity-50;
+  }
+
+  .btn-ghost {
+    @apply text-dt-light-gray hover:text-dt-orange hover:bg-dt-dark-gray font-medium px-4 py-2 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-dt-orange focus:ring-opacity-50;
+  }
+
+  /* DarkTube Input Styles */
+  .input-primary {
+    @apply bg-dt-dark-gray border border-dt-charcoal text-dt-white placeholder-dt-light-gray px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-dt-orange focus:border-dt-orange transition-all duration-200;
+  }
+
+  .input-search {
+    @apply bg-dt-charcoal border border-dt-dark-gray text-dt-white placeholder-dt-light-gray px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-dt-orange focus:border-dt-orange transition-all duration-200;
+  }
+
+  /* DarkTube Card Styles */
+  .card {
+    @apply bg-dt-dark-gray border border-dt-charcoal rounded-lg overflow-hidden;
+  }
+
+  .card-hover {
+    @apply card hover:border-dt-orange hover:shadow-lg hover:shadow-dt-orange/10 transition-all duration-200;
+  }
+
+  /* Video Card Styles */
+  .video-card {
+    @apply card-hover cursor-pointer group;
+  }
+
+  .video-thumbnail {
+    @apply aspect-video bg-dt-charcoal relative overflow-hidden;
+  }
+
+  .video-thumbnail img {
+    @apply w-full h-full object-cover transition-transform duration-300 group-hover:scale-105;
+  }
+
+  .video-info {
+    @apply p-4;
+  }
+
+  .video-title {
+    @apply text-dt-white font-semibold text-lg line-clamp-2 group-hover:text-dt-orange transition-colors duration-200;
+  }
+
+  .video-meta {
+    @apply text-dt-light-gray text-sm mt-2 space-y-1;
+  }
+
+  /* Channel Avatar */
+  .channel-avatar {
+    @apply w-10 h-10 rounded-full bg-dt-charcoal border-2 border-dt-orange overflow-hidden;
+  }
+
+  /* Navigation Styles */
+  .nav-item {
+    @apply flex items-center space-x-3 px-4 py-3 text-dt-light-gray hover:text-dt-orange hover:bg-dt-dark-gray rounded-lg transition-all duration-200 cursor-pointer;
+  }
+
+  .nav-item.active {
+    @apply text-dt-orange bg-dt-dark-gray border-r-2 border-dt-orange;
+  }
+
+  .nav-icon {
+    @apply w-6 h-6 flex-shrink-0;
+  }
+
+  /* Progress Bar */
+  .progress-bar {
+    @apply w-full bg-dt-charcoal rounded-full h-2 overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-dt-orange transition-all duration-300 ease-out;
+  }
+
+  /* Loading Spinner */
+  .spinner {
+    @apply animate-spin rounded-full border-2 border-dt-charcoal border-t-dt-orange;
+  }
+
+  /* Toast Notifications */
+  .toast {
+    @apply bg-dt-dark-gray border border-dt-charcoal text-dt-white px-4 py-3 rounded-lg shadow-lg;
+  }
+
+  .toast-success {
+    @apply toast border-dt-green;
+  }
+
+  .toast-error {
+    @apply toast border-dt-red;
+  }
+
+  .toast-warning {
+    @apply toast border-dt-orange;
+  }
+
+  /* Modal Styles */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50;
+  }
+
+  .modal-content {
+    @apply bg-dt-dark-gray border border-dt-charcoal rounded-lg max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto;
+  }
+
+  .modal-header {
+    @apply px-6 py-4 border-b border-dt-charcoal;
+  }
+
+  .modal-body {
+    @apply px-6 py-4;
+  }
+
+  .modal-footer {
+    @apply px-6 py-4 border-t border-dt-charcoal flex justify-end space-x-3;
+  }
+
+  /* Form Styles */
+  .form-group {
+    @apply space-y-2;
+  }
+
+  .form-label {
+    @apply block text-dt-white font-medium text-sm;
+  }
+
+  .form-error {
+    @apply text-dt-red text-sm;
+  }
+
+  .form-help {
+    @apply text-dt-light-gray text-sm;
+  }
+
+  /* Dropdown Styles */
+  .dropdown {
+    @apply relative inline-block;
+  }
+
+  .dropdown-menu {
+    @apply absolute right-0 mt-2 w-48 bg-dt-dark-gray border border-dt-charcoal rounded-lg shadow-lg z-50;
+  }
+
+  .dropdown-item {
+    @apply block px-4 py-2 text-dt-white hover:text-dt-orange hover:bg-dt-charcoal transition-colors duration-200 cursor-pointer;
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-dt-orange text-white;
+  }
+
+  .badge-secondary {
+    @apply badge bg-dt-dark-gray text-dt-light-gray;
+  }
+
+  .badge-success {
+    @apply badge bg-dt-green text-white;
+  }
+
+  .badge-error {
+    @apply badge bg-dt-red text-white;
+  }
+
+  /* Utility Classes */
+  .text-gradient {
+    @apply bg-gradient-to-r from-dt-orange to-dt-orange-muted bg-clip-text text-transparent;
+  }
+
+  .border-gradient {
+    @apply border-2 border-transparent bg-gradient-to-r from-dt-orange to-dt-orange-muted bg-clip-border;
+  }
+
+  .shadow-orange {
+    box-shadow: 0 4px 14px 0 rgba(255, 102, 0, 0.15);
+  }
+
+  .shadow-orange-lg {
+    box-shadow: 0 10px 25px -3px rgba(255, 102, 0, 0.2), 0 4px 6px -2px rgba(255, 102, 0, 0.1);
+  }
+
+  /* Animation Classes */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  /* Line Clamp Utilities */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from { 
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from { 
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Focus visible styles */
+  .focus-visible\:ring-orange:focus-visible {
+    @apply ring-2 ring-dt-orange ring-opacity-50;
+  }
+
+  /* Print styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .card {
+      @apply border-2;
+    }
+    
+    .btn-primary {
+      @apply border-2 border-dt-orange;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
